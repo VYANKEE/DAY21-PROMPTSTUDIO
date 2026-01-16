@@ -2,7 +2,11 @@
   "rewrites": [
     {
       "source": "/api-stability/:path*",
-      "destination": "https://api.stability.ai/:path*"
+      "destination": "[https://api.stability.ai/:path](https://api.stability.ai/:path)*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
-}git init
+}
