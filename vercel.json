@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api-stability/:path*",
+      "destination": "https://api.stability.ai/:path*"
+    }
+  ]
+}git init
