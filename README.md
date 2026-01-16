@@ -1,16 +1,41 @@
-# React + Vite
+DAY 21: 45 DAYS CODING CHALLENGE 
+# 🌟VENKY KA AI- Premium Image Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+*VENKY KA AI** is a futuristic, visually stunning AI Image Generation web application. Built with **React + Vite** and powered by the **ClipDrop API**, it features a premium "Glassmorphism" UI, neon aesthetics, and smooth animations.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 **Live Demo:** [https://day-21-promptstudio-9cdm.vercel.app/]
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Features
 
-## Expanding the ESLint configuration
+- 🎨 **Text-to-Image:** Generate high-quality, professional-grade images from text prompts.
+- 🔮 **Glassmorphism UI:** Modern frosted glass effects with neon accents.
+- ⚡ **Real-time Generation:** Powered by the ClipDrop API for fast results.
+- 🎬 **Smooth Animations:** Integrated with **Framer Motion** for a premium feel.
+- 📱 **Fully Responsive:** Works perfectly on Desktop, Tablet, and Mobile.
+- 📥 **HD Download:** One-click download for generated images.
+- 🔒 **Secure Proxy:** Custom proxy setup to handle CORS and API security.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend Library:** React.js (Vite)
+- **Styling:** Pure CSS (Custom Animations & Variables)
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **AI Engine:** ClipDrop API (Text-to-Image v1)
+- **Deployment:** Vercel
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to run the project locally.
+
+### 1. Clone the Repository
+```bash
+git clone [https://github.com/your-username/prompt-studio.git](https://github.com/your-username/prompt-studio.git)
+cd prompt-studio
