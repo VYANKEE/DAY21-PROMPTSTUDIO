@@ -7,36 +7,48 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState(null);
 
-  // --- API LOGIC ---
+  // --- CLIPDROP API LOGIC ---
   const handleGenerate = async () => {
     if (!prompt) return;
     setLoading(true);
     setGeneratedImage(null);
 
-    const API_KEY = import.meta.env.VITE_STABILITY_API_KEY;
+    const API_KEY = import.meta.env.VITE_CLIPDROP_API_KEY;
+
+    if (!API_KEY) {
+      alert("API Key missing! Check .env file.");
+      setLoading(false);
+      return;
+    }
 
     try {
-      const response = await fetch('/api-stability/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image', {
+      // ClipDrop ko JSON nahi, FormData chahiye hota hai
+      const form = new FormData();
+      form.append('prompt', prompt);
+
+      // Hum '/api-clipdrop' proxy use kar rahe hain (Vite config se)
+      const response = await fetch('/api-clipdrop/text-to-image/v1', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Authorization: `Bearer ${API_KEY}`,
+          'x-api-key': API_KEY,
+          // Note: Content-Type header mat lagana, browser khud lagayega
         },
-        body: JSON.stringify({
-          text_prompts: [{ text: prompt }],
-          cfg_scale: 7, height: 1024, width: 1024, steps: 30, samples: 1,
-        }),
+        body: form,
       });
 
-      if (!response.ok) throw new Error("Failed");
-
-      const result = await response.json();
-      if (result.artifacts) {
-        setGeneratedImage(`data:image/png;base64,${result.artifacts[0].base64}`);
+      if (!response.ok) {
+        throw new Error("Failed to generate. Check your API Quota.");
       }
+
+      // ClipDrop direct image file (Blob) bhejta hai
+      const blob = await response.blob();
+      const imageUrl = URL.createObjectURL(blob);
+
+      setGeneratedImage(imageUrl);
+
     } catch (error) {
-      alert("Error! Check API Key in .env file");
+      console.error(error);
+      alert("Error: " + error.message);
     } finally {
       setLoading(false);
     }
@@ -44,7 +56,7 @@ function App() {
 
   return (
     <>
-      {/* Background */}
+      {/* Background Animation */}
       <div className="bg-animation">
         <div className="orb orb-1"></div>
         <div className="orb orb-2"></div>
@@ -57,9 +69,9 @@ function App() {
         <nav className="navbar">
           <div className="logo">
             <Sparkles size={28} color="#ec4899" />
-            VENKY KA<span>AI</span>
+            NEXUS<span>.AI</span>
           </div>
-          <div style={{ color: 'rgba(255,255,255,0.6)' }}>Stable Diffusion XL</div>
+          <div style={{ color: 'rgba(255,255,255,0.6)' }}>Powered by ClipDrop</div>
         </nav>
 
         {/* Hero Section */}
@@ -71,8 +83,8 @@ function App() {
         >
           <h1 className="title-gradient">Dream It. Generate It.</h1>
           <p className="subtitle">
-            Turn words into stunning visuals with the power of AI. 
-            Production-ready assets in seconds.
+            Create stunning visuals with ClipDrop's high-quality AI engine. 
+            Professional grade results in seconds.
           </p>
         </motion.div>
 
@@ -86,14 +98,14 @@ function App() {
           <input 
             type="text" 
             className="search-input"
-            placeholder="A cyberpunk warrior in neon rain..."
+            placeholder="A futuristic city with flying cars..."
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleGenerate()}
           />
           <button className="btn-generate" onClick={handleGenerate} disabled={loading}>
             {loading ? <Zap className="animate-spin" /> : <Zap />} 
-            {loading ? "Creating..." : "Generate"}
+            {loading ? "Designing..." : "Generate"}
           </button>
         </motion.div>
 
@@ -112,9 +124,9 @@ function App() {
                 ) : (
                   <>
                     <img src={generatedImage} alt="AI Art" className="generated-img" />
-                    <a href={generatedImage} download="nexus-art.png" className="btn-generate" 
+                    <a href={generatedImage} download="nexus-clipdrop.jpg" className="btn-generate" 
                        style={{ position: 'absolute', bottom: '20px', borderRadius: '50px' }}>
-                      <Download size={18} /> Download
+                      <Download size={18} /> Download HD
                     </a>
                   </>
                 )}
@@ -126,9 +138,9 @@ function App() {
         {/* Features Grid */}
         <div className="features-grid">
           {[
-            { icon: Zap, title: "Lightning Fast", text: "Powered by SDXL Turbo" },
-            { icon: ImageIcon, title: "High Res", text: "1024x1024 Crystal Clear" },
-            { icon: Layers, title: "Unlimited", text: "No limits on creativity" }
+            { icon: Zap, title: "Pro Quality", text: "Powered by ClipDrop Engine" },
+            { icon: ImageIcon, title: "High Detail", text: "Perfect for Art & Design" },
+            { icon: Layers, title: "Fast", text: "Generates in seconds" }
           ].map((item, idx) => (
             <motion.div 
               key={idx}

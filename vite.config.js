@@ -1,15 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api-stability': {
-        target: 'https://api.stability.ai',
+      '/api-clipdrop': {
+        target: 'https://clipdrop-api.co',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api-stability/, ''),
+        rewrite: (path) => path.replace(/^\/api-clipdrop/, ''),
       },
     },
   },

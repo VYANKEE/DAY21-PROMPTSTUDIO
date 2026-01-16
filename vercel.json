@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api-stability/:match*",
-      "destination": "https://api.stability.ai/:match*"
+      "source": "/api-clipdrop/:path*",
+      "destination": "https://clipdrop-api.co/:path*"
     },
     {
       "source": "/(.*)",
