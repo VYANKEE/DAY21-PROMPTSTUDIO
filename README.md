@@ -31,11 +31,3 @@ DAY 21: 45 DAYS CODING CHALLENGE
 
 ---
 
-## 🚀 Getting Started
-
-Follow these steps to run the project locally.
-
-### 1. Clone the Repository
-```bash
-git clone [https://github.com/your-username/prompt-studio.git](https://github.com/your-username/prompt-studio.git)
-cd prompt-studio
