@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api-stability/:path*",
-      "destination": "[https://api.stability.ai/:path](https://api.stability.ai/:path)*"
+      "source": "/api-stability/:match*",
+      "destination": "https://api.stability.ai/:match*"
     },
     {
       "source": "/(.*)",
